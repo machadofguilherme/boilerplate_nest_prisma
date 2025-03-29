@@ -12,6 +12,11 @@ export class FilesService {
     return allData;
   }
 
+  async findOneFile(id: number) {
+    const oneData = await this.prisma.file.findUnique({ where: { id } });
+    return oneData;
+  }
+
   async sendOneFile(fileKey: string, fileUrl: string, userId: number) {
     const createFile = await this.prisma.file.create({
       data: { fileKey, fileUrl, user: { connect: { id: userId } } },

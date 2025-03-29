@@ -23,6 +23,15 @@ export class FilesController {
     return await this.filesService.getAllFiles();
   }
 
+  @Get('one/:id')
+  async getOne(@Param('id') id: number) {
+    if (isNaN(Number(id))) {
+      throw new BadRequestException('Invalid Id');
+    }
+
+    return await this.filesService.findOneFile(Number(id));
+  }
+
   @Post('send')
   async sendFile(@Body() body: IFiles, @Req() req) {
     const { fileUrl, fileKey } = body;
