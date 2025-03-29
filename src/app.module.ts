@@ -11,7 +11,7 @@ import { NoAuthModule } from './modules/no-auth/no-auth.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { MobileModule } from './modules/mobile/mobile.module';
 import { WebModule } from './modules/web/web.module';
-
+import { FilesModule } from './modules/files/files.module';
 @Module({
   imports: [
     ThrottlerModule.forRoot([
@@ -29,6 +29,7 @@ import { WebModule } from './modules/web/web.module';
     AdminModule,
     MobileModule,
     WebModule,
+    FilesModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
