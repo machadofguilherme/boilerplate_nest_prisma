@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  Delete,
   Get,
   Inject,
   Param,
@@ -60,5 +61,14 @@ export class FilesController {
 
     const response = await this.filesService.updateOneFile(fileKey, fileUrl, userId, Number(id));
     return response;
+  }
+
+  @Delete('remove/:id')
+  async removeFile(@Param('id') id: number) {
+    if (isNaN(Number(id))) {
+      throw new BadRequestException('Invalid Id');
+    }
+
+    return this.filesService.deleteFIle(Number(id));
   }
 }

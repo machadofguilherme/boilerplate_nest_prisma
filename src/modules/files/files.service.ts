@@ -41,4 +41,9 @@ export class FilesService {
 
     return updateFile;
   }
+
+  async deleteFIle(id: number) {
+    const remove = this.prisma.file.delete({ where: { id } });
+    return remove;
+  }
 }
