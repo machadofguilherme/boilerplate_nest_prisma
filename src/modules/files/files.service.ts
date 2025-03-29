@@ -23,4 +23,17 @@ export class FilesService {
 
     return createFile;
   }
+
+  async updateOneFile(fileKey: string, fileUrl: string, userId: number, id: number) {
+    const updateFile = await this.prisma.file.update({
+      where: { id },
+      data: { fileKey, fileUrl, user: { connect: { id: userId } } },
+    });
+
+    if (!updateFile) {
+      throw new BadRequestException('Failed to create file');
+    }
+
+    return updateFile;
+  }
 }
